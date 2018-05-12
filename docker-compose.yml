@@ -1,19 +1,10 @@
-version: "3"
+version: '2'
 services:
-  web:
-    # replace username/repo:tag with your name and image details
-    image: username/repo:tag
-    deploy:
-      replicas: 5
-      resources:
-        limits:
-          cpus: "0.1"
-          memory: 50M
-      restart_policy:
-        condition: on-failure
+  jenkins:
+    image: jenkins:2.0
+    container_name: jenkins
+    restart: always
     ports:
-      - "80:80"
-    networks:
-      - webnet
-networks:
-  webnet:
+      - 8080:8080
+    volumes:
+      - ./FOR_JENKINS:/var/jenkins_home
